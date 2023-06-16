@@ -1,0 +1,30 @@
+{% extends 'pibloggers/base.html' %}
+
+
+{% block page_header %}
+  <h3>{{ title }}</h3>
+{% endblock page_header %}
+
+{% block content %}
+  <p>
+  	<a href="{% url 'pibloggers:new_blogpost' title.id %}">Add entry to 
+      "{{ title }}"</a>
+  </p>
+
+  {% for blogpost in blog_posts %}
+    <div class="card mb-3">
+      <h4 class="card-header">
+        {{ blogpost.date_entered|date:'M d, Y H:i' }}
+        <small><a href="{% url 'pibloggers:edit_blogpost' blogpost.id %}">Edit
+          </a></small></h4>
+    <div class="card-body">
+      {{ blogpost.text|linebreaks }}
+    </div>
+	 </div>
+      
+  {% empty %}
+    <p>No posts have been added on this blog yet.</p>
+  {% endfor %}
+
+
+{% endblock content %}

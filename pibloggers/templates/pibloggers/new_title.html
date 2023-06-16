@@ -1,0 +1,18 @@
+{% extends "pibloggers/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+  <h3>Enter a Blog title</h3>
+{% endblock page_header %}
+
+{% block content %}
+  <form method="post" action="{% url 'pibloggers:new_title' %}" class="form">
+  	{% csrf_token %}
+  	{% bootstrap_form form %}
+    {% buttons %}
+  	  <button name="submit" class="btn btn-primary">Submit</button>
+    {% endbuttons %}
+  </form>
+
+
+{% endblock content %}
