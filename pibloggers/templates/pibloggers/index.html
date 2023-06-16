@@ -1,0 +1,31 @@
+{% extends "pibloggers/base.html" %}
+
+
+{% block page_header %}
+  <div class="jumbotron">
+    <h1 class="display-3">Write about your interests.</h1>
+
+    <p class="lead">PiBlogger enables you to reflect, share ideas and discuss 
+	   various topics of interest.</p>
+
+    <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}" 
+      role="button">Register &raquo;</a>
+  </div>
+{% endblock page_header %}
+
+{% block content %}
+  <h3>Latest Blog Posts:</h3>
+
+  <ul>
+  	{% for title in titles %}
+  	  <li><h5>
+  	    <a href="{% url 'pibloggers:title' title.id %}">{{ title }}</a>
+  	</h5></li>
+  	{% empty %}
+  	  <li><h5>No title has been added yet.</h5></li>
+  	{% endfor %}
+</ul>
+
+<h3><a href="{% url 'pibloggers:new_title' %}">Create a New Post</a></h3>
+
+{% endblock content %}
